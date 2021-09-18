@@ -3,6 +3,8 @@
 export const names = {
     tab1: "Home",
     screen1: "Home Screen",
+    screen1A: "Screen 1A",
+    screen1B: "Screen1B",
     screen2: "Screen 2",
     tab2: "Biblioteca",
     screen3: "Screen 3",

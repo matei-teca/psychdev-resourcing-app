@@ -15,9 +15,7 @@ export default function Screen1({ navigation }) {
   const [showTopics, setShowTopics] = useState(true);
 
   const centralButtonPressHandler = () => {
-    setUsertType(!userType);
-    // setShowTopics(!showTopics);
-    console.log(showTopics);
+        navigation.navigate(names.screen1A)
   };
 
   const { height, width } = useWindowDimensions();
@@ -27,8 +25,6 @@ export default function Screen1({ navigation }) {
   return (
     <View style={styles.container0}>
       
-
-              { userType === false && showTopics ? (
                 <View style={styles.containerA}>
 
                 <ImageBackground resizeMode="cover" style={styles.homeScreenImg} source={require("../assets/usedImg/homeScreenImg.jpg")}> 
@@ -57,167 +53,8 @@ export default function Screen1({ navigation }) {
                   </View>
                  </ImageBackground>
                </View>
-              )
-              
-              : (
-                    <View style={styles.containerA}>
-
-                    <ImageBackground resizeMode="cover" style={styles.homeScreenImg} source={require("../assets/usedImg/homeScreenImg.jpg")}> 
-          
-          
-                    {/* source={{uri: "https://images.theconversation.com/files/190172/original/file-20171013-11673-1x9ndkz.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"}} */}
-          
-                <View style={styles.containerB}>
-                  {showTopics ? (
-                    <View style={styles.containerB2}>
-                    <View style={styles.containerC}>
-                    <View style={styles.topicButtonsCo1}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      
-                      setShowTopics(!showTopics);
-                      setUsertType(false);
-                   }}
-                    style={[styles.topicButton]}
-                  >
-                    <Text style={styles.topicButtonText}>Utilizator</Text>
-                  </TouchableOpacity>
-    
-                  <TouchableOpacity
-                    onPress={() => {
-                      navigation.navigate(names.screen4)
-                      setShowTopics(true);
-                      setUsertType(false);
-                    }}
-                    style={[styles.topicButton]}
-                  >
-                    <Text style={styles.topicButtonText}>Utilizator Specialist</Text>
-                  </TouchableOpacity>
-                  </View>
-                  </View>
-                  </View>
-                   
-                  ) : (
-                    <View style={styles.containerB2}>
-                      <View style={styles.containerC}>
-                        <View style={styles.topicButtonsCo1}>
-                          <TouchableOpacity
-                            onPress={() => {
-                              setShowTopics(true);
-                              navigation.navigate(names.screen2, { topic: "Depresie" });
-                            }}
-                            style={[styles.topicButton]}
-                          >
-                            <Text style={styles.topicButtonText}>Depresie</Text>
-                          </TouchableOpacity>
-          
-                          <TouchableOpacity
-                          onPress={() => {
-                            setShowTopics(true);
-                            navigation.navigate(names.screen2, { topic: "Anxietate" });
-                          }}
-                            style={[styles.topicButton]}
-                          >
-                            <Text style={styles.topicButtonText}>Anxietate</Text>
-                          </TouchableOpacity>
-          
-                          {/* Am facut butonul asta invizibil ca sa arate ma interesant designul */}
-                          <TouchableOpacity
-                            style={[styles.topicButton, styles.topicButton3]}
-                          >
-                            <Text style={styles.topicButtonText}> ? </Text>
-                          </TouchableOpacity>
-                        </View>
-          
-                        <View style={styles.topicButtonsCo2}>
-                          <TouchableOpacity
-                          onPress={() => {
-                            setShowTopics(true);
-                            navigation.navigate(names.screen2, { topic: "Tulburari de somn" });
-                          }}
-                            style={[styles.topicButton]}
-                          >
-                            <Text style={styles.topicButtonText}>Tulburari de somn</Text>
-                          </TouchableOpacity>
-          
-                          <TouchableOpacity
-                          onPress={() => {
-                            setShowTopics(true);
-                            navigation.navigate(names.screen2, { topic: "Dependente" });
-                          }}
-                            style={[styles.topicButton]}
-                          >
-                            <Text style={styles.topicButtonText}>Dependente</Text>
-                          </TouchableOpacity>
-          
-                          <TouchableOpacity
-                          onPress={() => {
-                            setShowTopics(true);
-                            navigation.navigate(names.screen2, { topic: "Altele..." });
-                          }}
-                            style={[styles.topicButton]}
-                          >
-                            <Text style={styles.topicButtonText}>Altele..</Text>
-                          </TouchableOpacity>
-                        </View>
-                      </View >
-                      <View style={styles.bottomTextContainer}>
-                      <Text style={[styles.bottomText, globalStyles.textShadow]}>Care este categoria din care face parte situatia ta?</Text>
-                      </View>
-                    </View>
-                  )}
-          
-         
-                </View>
-          
-                {/* <View style={globalStyles.buttonsContainer}>
-                  <TouchableOpacity
-                    onPress={() =>
-                      navigation.navigate("Profile", {
-                        screen: names.screen2,
-                      })
-                    }
-                    style={[globalStyles.customButton1, globalStyles.customButton2]}
-                  >
-                    <Text
-                      style={[
-                        globalStyles.customButton1Text,
-                        globalStyles.customButton2Text,
-                      ]}
-                    >
-                      Go to {names.screen2}
-                    </Text>
-                  </TouchableOpacity>
-          
-                  <TouchableOpacity
-                    onPress={() =>
-                      navigation.navigate("Profile", {
-                        screen: names.screen3,
-                      })
-                    }
-                    style={[globalStyles.customButton1, globalStyles.customButton2]}
-                  >
-                    <Text
-                      style={[
-                        globalStyles.customButton1Text,
-                        globalStyles.customButton2Text,
-                      ]}
-                    >
-                      Go to {names.screen3}
-                    </Text>
-                  </TouchableOpacity>
-                </View> */}
-                    </ImageBackground>
-              </View>
-                
-
-                
-                  )}
-                
-                
-    </View>
-  )
-}
+               </View>
+               )}
 
 const styles = StyleSheet.create({
   container0: {

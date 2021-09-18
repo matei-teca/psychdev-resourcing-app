@@ -9,6 +9,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { globalStyles } from "./styles/globalStyles";
 
 import Screen1 from "./screens/screen1";
+import Screen1A from "./screens/screen1A";
+import Screen1B from "./screens/screen1B";
 import Screen2 from "./screens/screen2";
 import Screen3 from "./screens/screen3";
 import Screen4 from "./screens/screen4";
@@ -48,8 +50,8 @@ function HomeStackScreen({navigation}) {
   //     navigation.navigate(names.screen1)
   //   });
 
-    return unsubscribe;
-  }, [navigation]);
+  //   return unsubscribe;
+  // }, [navigation]);
 
   return (
     <HomeStack.Navigator>
@@ -57,6 +59,16 @@ function HomeStackScreen({navigation}) {
         name={names.screen1}
         component={Screen1}
         options={{ title: names.screen1, headerShown: false }}
+      />
+      <HomeStack.Screen
+        name={names.screen1A}
+        component={Screen1A}
+        options={{ title: names.screen1A, headerShown: false }}
+      />
+      <HomeStack.Screen
+        name={names.screen1B}
+        component={Screen1B}
+        options={{ title: names.screen1A, headerShown: false }}
       />
 
       <HomeStack.Screen
@@ -74,7 +86,7 @@ function HomeStackScreen({navigation}) {
 <HomeStack.Screen
         name={names.screen5}
         component={Screen5}
-        options={{ title: names.screen4, headerShown: false }}
+        options={{ title: names.screen5, headerShown: false }}
       />
 
  
