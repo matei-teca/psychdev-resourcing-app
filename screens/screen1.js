@@ -46,8 +46,10 @@ export default function Screen1({ navigation }) {
                  </View>
      
                  <View style={[windowWidth > 500 ? styles.welcomeTextContainer2BigScreen : styles.welcomeTextContainer2]}>
-                 <Text style={[styles.welcomeText, styles.welcomeText2, globalStyles.textShadow]}>Aceasta este Psihotereca, o aplicatie care </Text>
+                 <Text style={[styles.welcomeText, styles.welcomeText2, globalStyles.textShadow]}>Aceasta este Psihotereca,</Text>
+                 <Text style={[styles.welcomeText, styles.welcomeText2, globalStyles.textShadow]}>o aplicatie care </Text>
                  <Text style={[styles.welcomeText, styles.welcomeText2, globalStyles.textShadow]}>te ajuta sa te ajuti </Text>
+                 
      
                  </View>
                   </View>
@@ -95,8 +97,8 @@ const styles = StyleSheet.create({
   centralButton: {
     justifyContent: "center",
     alignItems: "center",
-    width: 100,
-    height: 100,
+    width: 150,
+    height: 150,
     elevation: 8,
     // backgroundColor: "#00001B",
     backgroundColor: globalColors.thirdColor,
@@ -109,10 +111,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.7,
     shadowOffset: { height: 5, width: 0 },
     shadowRadius: 20,
+    elevation: 2,
+
   },
 
   centralButtonText: {
-    fontSize: 18,
+    fontSize: 23,
     color: globalColors.secondColor,
     fontWeight: "bold",
     textAlign: "center",
@@ -129,12 +133,21 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
 
+  welcomeText: {
+    width: "100%",
+    marginBottom: "5%",
+    color: globalColors.secondColor,
+    fontWeight: "bold",
+    fontSize: 20,
+    textAlign: "center",
+  },
+
    welcomeTextContainer2: {
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
     width: "80%",
-    marginBottom: "3%",
+    marginBottom: "7%",
     position: "relative"
   },
 
@@ -147,22 +160,11 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
 
-  welcomeText: {
-    width: "100%",
-    marginBottom: "5%",
-    color: globalColors.secondColor,
-    fontWeight: "bold",
-    fontSize: "110%",
-    textAlign: "center",
-
-
-    
-
-  },
+ 
 
   
   welcomeText2: {
-    fontSize: "80%",
+    fontSize: 18,
     marginBottom: "2%",
   },
 
@@ -187,7 +189,7 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "space-around",
+    alignItems: "center",
   },
 
   topicButtonsCo1: {
@@ -257,7 +259,7 @@ const styles = StyleSheet.create({
   
   bottomText:{
     color: globalColors.secondColor,
-    fontSize: "110%",
+    fontSize: 12,
     fontWeight: "bold",
 
   },

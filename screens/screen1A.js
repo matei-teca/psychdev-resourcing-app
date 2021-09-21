@@ -90,96 +90,6 @@ export default function Screen1A({ route, navigation }) {
       width: "100%"
     },
   
-    centralButtonContainer: {
-      flex: 1,
-      justifyContent: "flex-start",
-      alignItems: "center",
-      marginTop: "30%",
-    },
-    
-    centralButton: {
-      justifyContent: "center",
-      alignItems: "center",
-      width: 100,
-      height: 100,
-      elevation: 8,
-      // backgroundColor: "#00001B",
-      backgroundColor: globalColors.thirdColor,
-      borderRadius: 100,
-      borderColor: globalColors.mainColor,
-      borderWidth: 1,
-      paddingVertical: 30,
-      paddingHorizontal: 30,
-      shadowColor: globalColors.mainColor,
-      shadowOpacity: 0.7,
-      shadowOffset: { height: 5, width: 0 },
-      shadowRadius: 20,
-    },
-  
-    centralButtonText: {
-      fontSize: 18,
-      color: globalColors.secondColor,
-      fontWeight: "bold",
-      textAlign: "center",
-      marginBottom: 5
-      
-    },
-  
-    welcomeTextContainer: {
-      flex: 1,
-      justifyContent: "flex-start",
-      alignItems: "center",
-      width: "80%",
-      marginTop: "10%",
-      position: "absolute",
-    },
-  
-     welcomeTextContainer2: {
-      flex: 1,
-      justifyContent: "flex-end",
-      alignItems: "center",
-      width: "80%",
-      marginBottom: "3%",
-      position: "relative"
-    },
-  
-    welcomeTextContainer2BigScreen: {
-      flex: 1,
-      justifyContent: "flex-start",
-      alignItems: "center",
-      width: "80%",
-      marginTop: "20%",
-      position: "absolute",
-    },
-  
-    welcomeText: {
-      width: "100%",
-      marginBottom: "5%",
-      color: globalColors.secondColor,
-      fontWeight: "bold",
-      fontSize: "110%",
-      textAlign: "center",
-  
-  
-      
-  
-    },
-  
-    
-    welcomeText2: {
-      fontSize: "80%",
-      marginBottom: "2%",
-    },
-  
-    item2: {
-      fontSize: 10,
-      color: "black",
-      marginBottom: "10%",
-      textAlign: "center",
-    },
-  
-    
-  
   
     containerB2: {
       flex: 1,
@@ -201,15 +111,9 @@ export default function Screen1A({ route, navigation }) {
       marginTop: "10%",
       width: "100%",
     },
-  
-    // topicButtonsCo2: {
-    //   flex: 1,
-    //   justifyContent: "space-evenly",
-    //   alignItems: "center",
-    // },
-  
+    
     topicButton: {
-      flex: 0.2,
+      flex: 0.25,
       width: "90%",
       justifyContent: "center",
       alignItems: "center",
@@ -253,13 +157,13 @@ export default function Screen1A({ route, navigation }) {
     },
   
     bottomTextContainer:{
-      flex: 0.1,
+      flex: 0.2,
       width: "75%",
       justifyContent: "flex-end",
       alignItems: "center",
       textAlign: "center",
 
-      marginBottom: "3%"
+      marginBottom: "10%"
   
     },
     bottomTextContainerBigScreen: {
@@ -275,8 +179,9 @@ export default function Screen1A({ route, navigation }) {
     
     bottomText:{
       color: globalColors.secondColor,
-      fontSize: "70%",
+      fontSize: 18,
       fontWeight: "bold",
+      textAlign: "center",
   
     },
 

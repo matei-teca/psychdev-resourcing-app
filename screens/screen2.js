@@ -29,12 +29,12 @@ export default function Screen2({ route, navigation }) {
               <Image style={styles.moreDetails} source={require("../assets/usedImg/moreDetailsSymbol.png")} />
             </TouchableOpacity>
 
-            {moreDetails ? <Text style = {[styles.screen2Text, {marginBottom: 30}]}>Unul dintre specialistii nostri iti va recomanda niste resurse (video, lecturi, ..) astfel incat tu sa poti gestiona singur situatia prin care treci </Text> : ""}
+            {moreDetails ? <Text style = {[styles.screen2Text, {marginBottom: 30}]}>Unul dintre specialistii nostri iti va recomanda niste resurse (video, lecturi, ..) astfel incat tu sa poti gestiona singur situatia prin care treci </Text> : <Text></Text>}
         </View>
 
         <View style={styles.containerC}>
-        <TextInput style={styles.input} placeholder={"Descrie situatia ta aici"}   multiline={true}  onChangeText= { text => setInputed(text)}/>
-        <TextInput style={styles.inputMail} placeholder={"example@gmail.com"} onChangeText= { text => setInputedMail(text)}/>
+        <TextInput style={styles.input} placeholder={"Descrie situatia ta aici"}  placeholderTextColor="gray"  multiline={true}  onChangeText= { text => setInputed(text)}/>
+        <TextInput style={styles.inputMail} placeholder={"example@gmail.com"} placeholderTextColor="gray" onChangeText= { text => setInputedMail(text)}/>
 
         <TouchableOpacity
           style={[globalStyles.customButton1, styles.submitButton]}
@@ -114,7 +114,7 @@ export default function Screen2({ route, navigation }) {
     screen2Text:{
       color: globalColors.secondColor,
       fontWeight: "bold",
-      fontSize: "95%",
+      fontSize: 16,
       maxWidth: 450,
       textShadowColor:globalColors.mainColor,
       textShadowOffset:{width: 1, height: 1},
@@ -145,6 +145,7 @@ export default function Screen2({ route, navigation }) {
       borderWidth: 1,
       borderColor: globalColors.mainColor,
       padding: 20,
+      paddingTop: 20,
       color: "white",
       backgroundColor: globalColors.thirdColor,
       opacity: 0.8,
@@ -152,7 +153,7 @@ export default function Screen2({ route, navigation }) {
     },
 
     inputMail: {
-      height: 30,
+      height: 60,
       width: "70%",
       maxWidth: 450,
       margin: 12,

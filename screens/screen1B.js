@@ -113,41 +113,8 @@ export default function Screen1A({ route, navigation }) {
       width: "100%"
     },
   
-    centralButtonContainer: {
-      flex: 1,
-      justifyContent: "flex-start",
-      alignItems: "center",
-      marginTop: "30%",
-    },
     
-    centralButton: {
-      justifyContent: "center",
-      alignItems: "center",
-      width: 100,
-      height: 100,
-      elevation: 8,
-      // backgroundColor: "#00001B",
-      backgroundColor: globalColors.thirdColor,
-      borderRadius: 100,
-      borderColor: globalColors.mainColor,
-      borderWidth: 1,
-      paddingVertical: 30,
-      paddingHorizontal: 30,
-      shadowColor: globalColors.mainColor,
-      shadowOpacity: 0.7,
-      shadowOffset: { height: 5, width: 0 },
-      shadowRadius: 20,
-    },
-  
-    centralButtonText: {
-      fontSize: 18,
-      color: globalColors.secondColor,
-      fontWeight: "bold",
-      textAlign: "center",
-      marginBottom: 5
-      
-    },
-  
+
     welcomeTextContainer: {
       flex: 1,
       justifyContent: "flex-start",
@@ -180,7 +147,7 @@ export default function Screen1A({ route, navigation }) {
       marginBottom: "5%",
       color: globalColors.secondColor,
       fontWeight: "bold",
-      fontSize: "110%",
+      fontSize: 16,
       textAlign: "center",
   
   
@@ -190,7 +157,7 @@ export default function Screen1A({ route, navigation }) {
   
     
     welcomeText2: {
-      fontSize: "80%",
+      fontSize: 12,
       marginBottom: "2%",
     },
   
@@ -215,7 +182,7 @@ export default function Screen1A({ route, navigation }) {
       width: "100%",
       flexDirection: "row",
       justifyContent: "center",
-      alignItems: "space-around",
+
     },
   
     topicButtonsCo1: {
@@ -278,15 +245,16 @@ export default function Screen1A({ route, navigation }) {
       width: "75%",
       justifyContent: "flex-end",
       alignItems: "center",
-      marginBottom: "3%"
+      marginBottom: "7%"
   
     },
   
     
     bottomText:{
       color: globalColors.secondColor,
-      fontSize: "110%",
+      fontSize: 18,
       fontWeight: "bold",
+      textAlign: "center",
   
     },
   });

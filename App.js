@@ -2,6 +2,8 @@ import * as React from "react";
 import  {useEffect} from "react";
 import { Text, View, Button } from "react-native";
 
+
+
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -15,10 +17,13 @@ import Screen2 from "./screens/screen2";
 import Screen3 from "./screens/screen3";
 import Screen4 from "./screens/screen4";
 import Screen5 from "./screens/screen5";
+import ScreenFb from "./screens/screenFb";
 
 // import { Screen1Name } from "./screensNames/Screen1Name";
 
 import { names } from "./screensNames/screensNames";
+
+
 
 const HomeStack = createStackNavigator();
 const ProfilesStack = createStackNavigator();
@@ -55,6 +60,11 @@ function HomeStackScreen({navigation}) {
 
   return (
     <HomeStack.Navigator>
+
+<HomeStack.Screen
+        name={"ScreenFb"}
+        component={ScreenFb}
+      />
       <HomeStack.Screen
         name={names.screen1}
         component={Screen1}
@@ -88,6 +98,7 @@ function HomeStackScreen({navigation}) {
         component={Screen5}
         options={{ title: names.screen5, headerShown: false }}
       />
+
 
  
     </HomeStack.Navigator>
