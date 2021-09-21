@@ -61,10 +61,6 @@ function HomeStackScreen({navigation}) {
   return (
     <HomeStack.Navigator>
 
-<HomeStack.Screen
-        name={"ScreenFb"}
-        component={ScreenFb}
-      />
       <HomeStack.Screen
         name={names.screen1}
         component={Screen1}
@@ -148,3 +144,16 @@ function App() {
 }
 
 export default App;
+
+
+// import * as React from "react";
+
+// import Routes from "./navigation";
+
+// function App() {
+//     return (
+//      <Routes/>
+//     );
+//   }
+  
+//   export default App;
