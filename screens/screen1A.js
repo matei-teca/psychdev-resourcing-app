@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, Button, StyleSheet, TouchableOpacity,Image, TextInput, Alert, ImageBackground, useWindowDimensions } from "react-native";
 
 import { globalStyles } from "../styles/globalStyles";
@@ -6,27 +6,36 @@ import { names } from "../screensNames/screensNames";
 import { globalColors } from "../styles/globalColors";
 import { TabRouter } from "@react-navigation/native";
 
+import { TypeOfUserContext } from "../navigation/AuthenticatedUserProvider"
+import LoginScreen from "./LoginScreen";
+
+import * as Animatable from "react-native-animatable";
 
 
 export default function Screen1A({ route, navigation }) {
+
+  const { specialist, setSpecialist } = useContext(TypeOfUserContext)
+
   const { height, width } = useWindowDimensions();
   const windowWidth = width
     return (
         <View style={styles.containerA}>
+          
 
         <ImageBackground resizeMode="cover" style={styles.homeScreenImg} source={require("../assets/usedImg/homeScreenImg.jpg")}> 
-
+        
 
     <View style={styles.containerB}>
         <View style={styles.containerB2}>
         <View style={styles.containerC}>
-        <View style={styles.topicButtonsCo1}>
+        {/* <View style={styles.topicButtonsCo1}> */}
+        <Animatable.View
+        animation="fadeInUpBig"
+        style = {styles.topicButtonsCo1}
+      >
       <TouchableOpacity
         onPress={() => {
-          
-          // setShowTopics(!showTopics);
-          // setUsertType(false);
-
+          setSpecialist(false);
           navigation.navigate(names.screen1B)
        }}
         style={[styles.topicButton]}
@@ -36,16 +45,18 @@ export default function Screen1A({ route, navigation }) {
 
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate(names.screen4)
-          // setShowTopics(true);
-          // setUsertType(false);
+          setSpecialist(true);
+          setTimeout(() => {navigation.navigate(names.tab2)
+          }, 100
+          )
         }}
         style={[styles.topicButton]}
       >
         <Text style={styles.topicButtonText}>Specialist</Text>
       </TouchableOpacity>
+      </Animatable.View>
 
-      </View>
+      {/* </View> */}
       
       <View style={ [windowWidth > 500 ? styles.bottomTextContainerBigScreen : styles.bottomTextContainer]}>
                       <Text style={[styles.bottomText, globalStyles.textShadow]}>Varianta specialist este pentru psihologii specialisti ce sunt membri ai echipei Psihotereca</Text>
@@ -53,7 +64,9 @@ export default function Screen1A({ route, navigation }) {
       </View>
       </View>
     </View>
+
       </ImageBackground>
+
       </View>
     );
 

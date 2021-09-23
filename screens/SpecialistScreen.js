@@ -1,15 +1,19 @@
 
 import { StatusBar } from 'expo-status-bar';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { IconButton } from '../components';
 import Firebase from '../config/firebase';
 import { AuthenticatedUserContext } from '../navigation/AuthenticatedUserProvider';
 
+// import firebase from 'firebase/app';
+// import '@firebase/firestore';
+
+
 const auth = Firebase.auth();
 
-export default function HomeScreen() {
+export default function SpecialistScreen() {
   const { user } = useContext(AuthenticatedUserContext);
   const handleSignOut = async () => {
     try {
@@ -18,6 +22,16 @@ export default function HomeScreen() {
       console.log(error);
     }
   };
+
+
+  // const db = firebase.firestore();
+  // db.settings({timestampsInSnapshots: true});
+
+  // useEffect(() => {
+  //   firebase.firestore().collection("cafes").get().then((snapshot) => {
+  //           console.log(snapshot.docs)})
+  // }, [])
+
   return (
     <View style={styles.container}>
       <StatusBar style='dark-content' />
@@ -31,6 +45,7 @@ export default function HomeScreen() {
         />
       </View>
       <Text style={styles.text}>Your UID is: {user.uid} </Text>
+      <Text style={styles.text}>O sa vezi aici toate cererile utilizatorilor</Text>
     </View>
   );
 }

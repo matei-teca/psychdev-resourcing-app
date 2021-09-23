@@ -1,9 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button as RNButton } from 'react-native';
+import { StyleSheet, Text, View, Button as RNButton, TouchableOpacity } from 'react-native';
 
 import { Button, InputField, ErrorMessage } from '../components';
+import { globalColors } from "../styles/globalColors";
+
+import * as Animatable from "react-native-animatable";
+
+
+
 import Firebase from '../config/firebase';
 
 const auth = Firebase.auth();
@@ -35,17 +41,26 @@ export default function LoginScreen({ navigation }) {
     }
   };
 
+  // const [focusColor, setFocusColor] = useState()
+
   return (
     <View style={styles.container}>
+      <Animatable.View
+        animation="fadeInUpBig"
+
+      >
       <StatusBar style='dark-content' />
       <Text style={styles.title}>Login</Text>
+
+      <View>
       <InputField
         inputStyle={{
           fontSize: 14
         }}
         containerStyle={{
-          backgroundColor: '#fff',
-          marginBottom: 20
+          backgroundColor: '#fff' ,
+          marginBottom: 20,
+          borderRadius: 100
         }}
         leftIcon='email'
         placeholder='Enter email'
@@ -53,16 +68,21 @@ export default function LoginScreen({ navigation }) {
         keyboardType='email-address'
         textContentType='emailAddress'
         autoFocus={true}
-        value={email}
+        // onFocus={() => setFocusColor({backgroundColor: "orange"})}
+        // onFocus={() => console.log("works")}
         onChangeText={text => setEmail(text)}
       />
+      </View>
+      
       <InputField
         inputStyle={{
           fontSize: 14
         }}
         containerStyle={{
           backgroundColor: '#fff',
-          marginBottom: 20
+          marginBottom: 20,
+          borderRadius: 100
+
         }}
         leftIcon='lock'
         placeholder='Enter password'
@@ -76,7 +96,10 @@ export default function LoginScreen({ navigation }) {
         handlePasswordVisibility={handlePasswordVisibility}
       />
       {loginError ? <ErrorMessage error={loginError} visible={true} /> : null}
-      <Button
+
+
+
+      {/* <Button
         onPress={onLogin}
         backgroundColor='#f57c00'
         title='Login'
@@ -85,12 +108,33 @@ export default function LoginScreen({ navigation }) {
         containerStyle={{
           marginBottom: 24
         }}
-      />
-      <RNButton
+      /> */}
+
+
+<View style={styles.button}>
+          <TouchableOpacity
+            style={[styles.signIn]}
+            onPress={onLogin}
+          >
+            <Text
+              style={[
+                styles.textSign
+              ]}
+            >
+              Sign In
+            </Text>
+          </TouchableOpacity>
+
+          </View>
+
+
+      {/* <RNButton
         onPress={() => navigation.navigate('Signup')}
         title='Go to Signup'
         color='#fff'
-      />
+      /> */}
+            </Animatable.View>
+
     </View>
   );
 }
@@ -98,7 +142,7 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e93b81',
+    backgroundColor: globalColors.thirdColor,
     paddingTop: 50,
     paddingHorizontal: 12
   },
@@ -108,5 +152,23 @@ const styles = StyleSheet.create({
     color: '#fff',
     alignSelf: 'center',
     paddingBottom: 24
-  }
+  },
+
+  button: {
+    alignItems: "center",
+    marginTop: 50,
+  },
+  signIn: {
+    width: "40%",
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    backgroundColor: globalColors.secondColor,
+  },
+  textSign: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: globalColors.mainColor
+  },
 });

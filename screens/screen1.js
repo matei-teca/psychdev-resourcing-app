@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Button, ImageBackground, useWindowDimensions  } from "react-native";
 
 import { globalStyles } from "../styles/globalStyles";
@@ -6,9 +6,26 @@ import { names } from "../screensNames/screensNames";
 
 import { globalColors } from "../styles/globalColors";
 
+
+import Firebase from '../config/firebase';
+import db from "../config/firebase"
+
+
+
+
 // import img from "../assets/usedImg/homeScreenimg"
 
 export default function Screen1({ navigation }) {
+
+
+
+  // firebase.firestore().settings({timestampsInSnapshots: true});
+
+
+  // useEffect(() => {
+  //   firebase.firestore().collection("cafes").get().then((snapshot) => {
+  //           console.log(snapshot.data().city)})
+  // }, [])
 
   const [userType, setUsertType] = useState(false)
 
@@ -21,6 +38,7 @@ export default function Screen1({ navigation }) {
   const { height, width } = useWindowDimensions();
   const windowWidth = width
 
+ 
 
   return (
     <View style={styles.container0}>
@@ -44,7 +62,8 @@ export default function Screen1({ navigation }) {
                  <Text style={[styles.welcomeText, globalStyles.textShadow]}>Bine ai venit!</Text>
      
                  </View>
-     
+                 {/* <Button title={"yes"} onPress={() => navigation.navigate("Test Screen")}/> */}
+
                  <View style={[windowWidth > 500 ? styles.welcomeTextContainer2BigScreen : styles.welcomeTextContainer2]}>
                  <Text style={[styles.welcomeText, styles.welcomeText2, globalStyles.textShadow]}>Aceasta este Psihotereca,</Text>
                  <Text style={[styles.welcomeText, styles.welcomeText2, globalStyles.textShadow]}>o aplicatie care </Text>
@@ -264,3 +283,8 @@ const styles = StyleSheet.create({
 
   },
 });
+
+
+
+
+

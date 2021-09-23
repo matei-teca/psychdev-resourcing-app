@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import Constants from 'expo-constants';
+import 'firebase/firestore';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -18,4 +19,7 @@ if (firebase.apps.length === 0) {
   Firebase = firebase.initializeApp(firebaseConfig);
 }
 
-export default Firebase;
+const db = firebase.firestore()
+
+
+export default Firebase; db;
