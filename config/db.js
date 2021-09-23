@@ -1,10 +1,8 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import Constants from 'expo-constants';
+import firebase from 'firebase/app'
 import 'firebase/firestore';
 
 // Initialize Firebase
-const firebaseConfig = {
+const config = {
   apiKey: "AIzaSyDPZWRuVcnb81L4Z2Jgj2VMVmRYgYxen4U",
   authDomain: "summerapp-c3722.firebaseapp.com",
   projectId: "summerapp-c3722",
@@ -14,13 +12,9 @@ const firebaseConfig = {
   measurementId: "G-B656LVH2ZC"
 };
 
-let Firebase;
+firebase.initializeApp(config);
 
-if (firebase.apps.length === 0) {
-  Firebase = firebase.initializeApp(firebaseConfig);
-}
 
-export const db = firebase.firestore()
-db.settings({timestampsInSnapshots: true});  
+const db = firebase.firestore()
 
-export default Firebase;
+export default db;

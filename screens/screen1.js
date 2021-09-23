@@ -7,8 +7,8 @@ import { names } from "../screensNames/screensNames";
 import { globalColors } from "../styles/globalColors";
 
 
-import Firebase from '../config/firebase';
-import db from "../config/firebase"
+// import Firebase from '../config/firebase';
+import { db } from "../config/firebase"
 
 
 
@@ -17,15 +17,6 @@ import db from "../config/firebase"
 
 export default function Screen1({ navigation }) {
 
-
-
-  // firebase.firestore().settings({timestampsInSnapshots: true});
-
-
-  // useEffect(() => {
-  //   firebase.firestore().collection("cafes").get().then((snapshot) => {
-  //           console.log(snapshot.data().city)})
-  // }, [])
 
   const [userType, setUsertType] = useState(false)
 
@@ -38,10 +29,22 @@ export default function Screen1({ navigation }) {
   const { height, width } = useWindowDimensions();
   const windowWidth = width
 
+
+
+
+  const [userInput,setUserInput] = useState([]);
+  const [userInputId,setUserInputId] = useState([]);
  
+  useEffect(() => {
+    db.collection('PsihoterecaInputsTesting').get().then(snapshot => {snapshot.docs.forEach(doc => { return (setUserInputId([doc.id]), setUserInput(prevItems => [ ... prevItems, {situatie: doc.data().situatie, email: doc.data().email}]), console.log(userInput)) })})
+  }, [])
 
   return (
     <View style={styles.container0}>
+
+      <View style={{color:"white"}}>
+        {userInput.map(input => {return(<View style={{color:"white"}} key={userInputId}><Text>{input.situatie}</Text><Text>{input.email}</Text></View>)})}
+      </View>
       
                 <View style={styles.containerA}>
 
