@@ -6,9 +6,13 @@ import { names } from "../screensNames/screensNames";
 import { globalColors } from "../styles/globalColors";
 import { TabRouter } from "@react-navigation/native";
 
+import * as Animatable from "react-native-animatable";
+
 
 
 export default function Screen1A({ route, navigation }) {
+
+
     return (
         <View style={styles.containerA}>
 
@@ -16,12 +20,21 @@ export default function Screen1A({ route, navigation }) {
 
         <View style={styles.containerB2}>
                       <View style={styles.containerC}>
-                        <View style={styles.topicButtonsCo1}>
+                      <Animatable.View
+        animation="fadeInUpBig"
+        style = {styles.topicButtonsCo1}
+      >
                           <TouchableOpacity
                             onPress={() => {
+                            
                               navigation.navigate(names.screen2, { topic: "Depresie" });
                             }}
                             style={[styles.topicButton]}
+
+                            accessible={true}
+                            accessibilityLabel={"un buton pentru a alege categoria din care face parte situatia ta; daca problema ta este legata de Depresie, apasa aici"}
+                            accessibilityHint={"apasand acest buton vei merge la ecranul urmator, unde iti explici problema si o trimiti catre specialisti"}
+                            accessibilityRole={"button"}
                           >
                             <Text style={styles.topicButtonText}>Depresie</Text>
                           </TouchableOpacity>
@@ -31,6 +44,10 @@ export default function Screen1A({ route, navigation }) {
                             navigation.navigate(names.screen2, { topic: "Anxietate" });
                           }}
                             style={[styles.topicButton]}
+                            accessible={true}
+                            accessibilityLabel={"un buton pentru a alege categoria din care face parte situatia ta; daca problema ta este legata de Anxietate, apasa aici"}
+                            accessibilityHint={"la fel ca primul buton"}
+                            accessibilityRole={"button"}
                           >
                             <Text style={styles.topicButtonText}>Anxietate</Text>
                           </TouchableOpacity>
@@ -38,18 +55,28 @@ export default function Screen1A({ route, navigation }) {
                           {/* Am facut butonul asta invizibil ca sa arate ma interesant designul */}
                           <TouchableOpacity
                             style={[styles.topicButton, styles.topicButton3]}
+                            
                           >
                             <Text style={styles.topicButtonText}> ? </Text>
                           </TouchableOpacity>
-                        </View>
+                          </Animatable.View>
+
           
-                        <View style={styles.topicButtonsCo2}>
+                        <Animatable.View
+        animation="fadeInUpBig"
+        style = {styles.topicButtonsCo2}
+      >
                           <TouchableOpacity
                           onPress={() => {
                             navigation.navigate(names.screen2, { topic: "Tulburari de somn" });
                           }}
                             style={[styles.topicButton]}
+                            accessible={true}
+                            accessibilityLabel={"un buton pentru a alege categoria din care face parte situatia ta; daca problema ta este legata de Tulburari de somn, apasa aici"}
+                            accessibilityHint={"la fel ca primul buton"}
+                            accessibilityRole={"button"}
                           >
+                          
                             <Text style={styles.topicButtonText}>Tulburari de somn</Text>
                           </TouchableOpacity>
           
@@ -58,6 +85,10 @@ export default function Screen1A({ route, navigation }) {
                             navigation.navigate(names.screen2, { topic: "Dependente" });
                           }}
                             style={[styles.topicButton]}
+                            accessible={true}
+                            accessibilityLabel={"un buton pentru a alege categoria din care face parte situatia ta; daca problema ta este legata de Dependente, apasa aici"}
+                            accessibilityHint={"la fel ca primul buton"}
+                            accessibilityRole={"button"}
                           >
                             <Text style={styles.topicButtonText}>Dependente</Text>
                           </TouchableOpacity>
@@ -67,11 +98,15 @@ export default function Screen1A({ route, navigation }) {
                             navigation.navigate(names.screen2, { topic: "Altele..." });
                           }}
                             style={[styles.topicButton]}
+                            accessible={true}
+                            accessibilityLabel={"un buton pentru a alege categoria din care face parte situatia ta; daca problema ta este legata de Altele..., apasa aici"}
+                            accessibilityHint={"la fel ca primul buton"}
+                            accessibilityRole={"button"}
                           >
                             <Text style={styles.topicButtonText}>Altele..</Text>
                           </TouchableOpacity>
-                        </View>
-                      </View >
+                          </Animatable.View>
+                      </View>
                       <View style={styles.bottomTextContainer}>
                       <Text style={[styles.bottomText, globalStyles.textShadow]}>Care este categoria din care face parte situatia ta?</Text>
                       </View>

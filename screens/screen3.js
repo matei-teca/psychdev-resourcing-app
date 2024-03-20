@@ -48,6 +48,10 @@ export default function Screen3({ navigation }) {
                 <View style={styles.item}>
                   <TouchableOpacity
                   onPress = {() => Linking.openURL(item.resource.url)}
+
+                  accessible={true}
+                   accessibilityLabel={"pe acest element, care contine informatiile aferente unei recomandari, se poate apasa"} accessibilityRole={"button"}
+                   accessibilityHint={"apsand acest buton, vei fi directionat catre un site de unde poti descarca resursa"}
                   >
                   <ImageBackground
                     resizeMode="cover"

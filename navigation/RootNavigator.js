@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { View, ActivityIndicator } from 'react-native';
 
+import { Ionicons } from "@expo/vector-icons";  
+
 import Firebase from '../config/firebase';
 import { AuthenticatedUserContext } from './AuthenticatedUserProvider';
 import { TypeOfUserContext } from './AuthenticatedUserProvider';
@@ -86,6 +88,22 @@ export default function RootNavigator() {
 
 
       <Tabs.Navigator
+
+// screenOptions={({ route }) => ({
+//   tabBarIcon: () => {
+//     return <Ionicons name={"md-home"} size={16}  />;
+//   },
+//   tabBarActiveBackgroundColor: "black",
+//   tabBarInactiveBackgroundColor: "black",
+
+  
+//   }
+// })}
+
+
+
+
+      
         tabBarOptions={{
           labelStyle: {
             fontSize: 12,
@@ -95,6 +113,12 @@ export default function RootNavigator() {
           inactiveTintColor: "white",
           activeBackgroundColor: "black",
           inactiveBackgroundColor: "black",
+          tabBarIcon:
+              (<Ionicons
+                name="md-home"
+                size={24}
+              />)
+          
         }}
       >
         {specialist && !user ? 
@@ -112,11 +136,19 @@ export default function RootNavigator() {
        
         </>
       : specialist && user ? 
+      <>
+      <Tabs.Screen
+          name={names.tab1}
+          component={HomeStack}
+          options={{ headerShown: false }}
+        />
         <Tabs.Screen
           name={names.tab3}
           component={SpecialistStack}
           options={{ headerShown: false }}
-        />: 
+        />
+        </>
+        : 
         <Tabs.Screen
           name={names.tab1}
           component={HomeStack}

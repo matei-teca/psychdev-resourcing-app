@@ -6,17 +6,26 @@ import { names } from "../screensNames/screensNames";
 import { globalColors } from "../styles/globalColors";
 import { TabRouter } from "@react-navigation/native";
 
+import * as Animatable from "react-native-animatable";
+
+// for saving data to Firestore Database
+import { db } from "../config/firebase"
+
+
 
 
 export default function Screen2({ route, navigation }) {
   const { topic } = route.params;
 
+  const [inputedName, setInputedName] = useState("");
   const [inputed, setInputed] = useState("");
   const [inputedMail, setInputedMail] = useState("");
 
   const [moreDetails, setMoreDetails] = useState(false);
 
-
+  const saveToDataBase = () =>{
+    db.collection('PsihoterecaInputsTesting').add({name:inputedName, situatie: inputed, email: inputedMail, topic: topic})
+  }
   
     return (
       <View style={styles.containerA}>
@@ -32,9 +41,19 @@ export default function Screen2({ route, navigation }) {
             {moreDetails ? <Text style = {[styles.screen2Text, {marginBottom: 30}]}>Unul dintre specialistii nostri iti va recomanda niste resurse (video, lecturi, ..) astfel incat tu sa poti gestiona singur situatia prin care treci </Text> : <Text></Text>}
         </View>
 
-        <View style={styles.containerC}>
-        <TextInput style={styles.input} placeholder={"Descrie situatia ta aici"}  placeholderTextColor="gray"  multiline={true}  onChangeText= { text => setInputed(text)}/>
-        <TextInput style={styles.inputMail} placeholder={"example@gmail.com"} placeholderTextColor="gray" onChangeText= { text => setInputedMail(text)}/>
+        <Animatable.View
+        animation="fadeInUpBig"
+        style = {styles.containerC}
+      >
+                <TextInput  style={styles.inputMail} placeholder={"Numele tau"} placeholderTextColor="gray" onChangeText= { text => setInputedName(text)} value = {inputedName}/>
+                
+
+                {/* ref={input => { this.textInput = input }}
+                ref={input2 => { this.textInput2 = input2 }}
+                ref={input3 => { this.textInput3 = input3 }}  */}
+
+        <TextInput  style={styles.input} placeholder={"Descrie situatia ta "}  placeholderTextColor="gray"  multiline={true}  onChangeText= { text => setInputed(text)}/>
+        <TextInput style={styles.inputMail} placeholder={"example@gmail.com"} placeholderTextColor="gray" keyboardType="email-address" onChangeText= { text => setInputedMail(text)}/>
 
         <TouchableOpacity
           style={[globalStyles.customButton1, styles.submitButton]}
@@ -42,8 +61,14 @@ export default function Screen2({ route, navigation }) {
             if (inputed.length > 5 && inputedMail.length > 5){
               // Alert.alert("Ok", "Situatia ta va fi analizata de catre un specialist, si vei primi un raspuns cat se poate de repedde", [{text: "Ok"}, {text: "Nope"}]);
               alert("Situatia ta va fi analizata de catre un specialist, si vei primi un raspuns cat se poate de repede pe adresa de mail " + inputedMail+ "\n\n\n" + '"' + inputed + '"');
-              navigation.navigate(names.tab2);
-              setTimeout(() => {alert("Aceasta este Biblioteca, unde gasesti cele mai recomandate lecturi"), 1000})
+              // navigation.navigate(names.tab2);
+              saveToDataBase();
+              setInputedName("");
+              // this.textInput.clear();
+              // this.textInput2.clear();
+              // this.textInput3.clear();
+
+              // setTimeout(() => {alert("Aceasta este Biblioteca, unde gasesti cele mai recomandate lecturi"), 1000})
             } else if (inputed.length > 30 && inputedMail.length < 5) {
               alert("Nu ai introdus o adresa de email valida")
             } else if (inputed.length < 30 && inputedMail.length > 5) {
@@ -51,10 +76,14 @@ export default function Screen2({ route, navigation }) {
             }
             
             else (alert("Nu ai introdus nicio informatie")) }}
+
+            accessible={true}
+                   accessibilityLabel={"Acesta este butonul de submit"} accessibilityRole={"button"}
+                   accessibilityHint={"apsand acest buton, informatiile scrise de catre tine vor fi trimise catre specialisti"}
              >
           <Text style={globalStyles.customButton1Text}>SUBMIT</Text>
         </TouchableOpacity>
-        </View> 
+        </Animatable.View>
 
  
 {/* 

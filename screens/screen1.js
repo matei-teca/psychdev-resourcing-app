@@ -6,10 +6,10 @@ import { names } from "../screensNames/screensNames";
 
 import { globalColors } from "../styles/globalColors";
 
+import { StatusBar } from 'react-native';
 
-// import Firebase from '../config/firebase';
-import { db } from "../config/firebase"
-
+import * as Animatable from "react-native-animatable";
+import { useIsFocused } from '@react-navigation/native';
 
 
 
@@ -27,40 +27,40 @@ export default function Screen1({ navigation }) {
   };
 
   const { height, width } = useWindowDimensions();
-  const windowWidth = width
+  const windowWidth = width;
 
+  //for animation to reload when navigating
+  const isFocused = useIsFocused();
 
-
-
-  const [userInput,setUserInput] = useState([]);
-  const [userInputId,setUserInputId] = useState([]);
- 
-  useEffect(() => {
-    db.collection('PsihoterecaInputsTesting').get().then(snapshot => {snapshot.docs.forEach(doc => { return (setUserInputId([doc.id]), setUserInput(prevItems => [ ... prevItems, {situatie: doc.data().situatie, email: doc.data().email}]), console.log(userInput)) })})
-  }, [])
+  StatusBar.setBarStyle('light-content', true);
 
   return (
     <View style={styles.container0}>
-
-      <View style={{color:"white"}}>
-        {userInput.map(input => {return(<View style={{color:"white"}} key={userInputId}><Text>{input.situatie}</Text><Text>{input.email}</Text></View>)})}
-      </View>
       
                 <View style={styles.containerA}>
 
-                <ImageBackground resizeMode="cover" style={styles.homeScreenImg} source={require("../assets/usedImg/homeScreenImg.jpg")}> 
+                <ImageBackground resizeMode="cover" style={styles.homeScreenImg} source={require("../assets/usedImg/homeScreenImg.jpg")} accessible={true}
+                   accessibilityLabel={"Aceasta este imaginea de fundal" } accessibilityRole={"image"} accessibilityHint={"In imaginea aceasta, un om se uita ganditor catre cer"}> 
                  <View style={styles.containerB1}>
                       
-                 <View style={styles.centralButtonContainer}>
+                 { isFocused && 
+                 <Animatable.View
+        animation="zoomInUp"
+        style={styles.centralButtonContainer}
+      >
                  <TouchableOpacity
-                   onPress={centralButtonPressHandler}
+                   onPress={centralButtonPressHandler} 
                    style={styles.centralButton}
+
+                   accessible={true}
+                   accessibilityLabel={"Incepe aici, apasa"} accessibilityRole={"button"}
+                   accessibilityHint={"te duce in ecranul urmator"}
                  >
                    <Text style={styles.centralButtonText}>Incepe</Text>
                    <Text style={styles.centralButtonText}>Aici</Text>
                  </TouchableOpacity>
-                 </View>
-     
+                 </Animatable.View>
+                 }     
                  <View style={styles.welcomeTextContainer }>
                  <Text style={[styles.welcomeText, globalStyles.textShadow]}>Bine ai venit!</Text>
      
@@ -70,7 +70,7 @@ export default function Screen1({ navigation }) {
                  <View style={[windowWidth > 500 ? styles.welcomeTextContainer2BigScreen : styles.welcomeTextContainer2]}>
                  <Text style={[styles.welcomeText, styles.welcomeText2, globalStyles.textShadow]}>Aceasta este Psihotereca,</Text>
                  <Text style={[styles.welcomeText, styles.welcomeText2, globalStyles.textShadow]}>o aplicatie care </Text>
-                 <Text style={[styles.welcomeText, styles.welcomeText2, globalStyles.textShadow]}>te ajuta sa te ajuti </Text>
+                 <Text style={[styles.welcomeText, styles.welcomeText2, globalStyles.textShadow]}>te ajuta sa te ajuti !</Text>
                  
      
                  </View>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   containerA: {
     flex: 1,
-    width: "100%"
+    width: "100%",
   },
 
   homeScreenImg: {
@@ -100,20 +100,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
 
-    width: "100%"
+    width: "100%",
+
   },
 
   containerB1: {
     flex: 1,
     alignItems: "center",
-    width: "100%"
+    width: "100%",     marginTop: "10%"
+
   },
 
   centralButtonContainer: {
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    marginTop: "30%",
+    marginTop: 150,
   },
   
   centralButton: {
@@ -151,7 +153,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     width: "80%",
-    marginTop: "10%",
+    marginTop: 80,
     position: "absolute",
   },
 
@@ -169,7 +171,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
     width: "80%",
-    marginBottom: "7%",
+    marginBottom: 20,
     position: "relative"
   },
 
@@ -178,7 +180,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     width: "80%",
-    marginTop: "20%",
+    marginTop: 790,
     position: "absolute",
   },
 

@@ -7,12 +7,15 @@ import { Button, InputField, ErrorMessage } from '../components';
 import { globalColors } from "../styles/globalColors";
 
 import * as Animatable from "react-native-animatable";
+import { useIsFocused } from '@react-navigation/native';
+
 
 
 
 import Firebase from '../config/firebase';
 
 const auth = Firebase.auth();
+
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -35,6 +38,7 @@ export default function LoginScreen({ navigation }) {
     try {
       if (email !== '' && password !== '') {
         await auth.signInWithEmailAndPassword(email, password);
+        
       }
     } catch (error) {
       setLoginError(error.message);
@@ -43,16 +47,21 @@ export default function LoginScreen({ navigation }) {
 
   // const [focusColor, setFocusColor] = useState()
 
+  //for animation to reload when navigating
+  const isFocused = useIsFocused()
+
+
   return (
     <View style={styles.container}>
+      { isFocused && 
       <Animatable.View
         animation="fadeInUpBig"
-
+        style={styles.containerB}
       >
       <StatusBar style='dark-content' />
       <Text style={styles.title}>Login</Text>
 
-      <View>
+      <View style={styles.containerC}>
       <InputField
         inputStyle={{
           fontSize: 14
@@ -60,7 +69,9 @@ export default function LoginScreen({ navigation }) {
         containerStyle={{
           backgroundColor: '#fff' ,
           marginBottom: 20,
-          borderRadius: 100
+          borderRadius: 100,
+          width: "100%",
+          maxWidth: 600
         }}
         leftIcon='email'
         placeholder='Enter email'
@@ -72,7 +83,7 @@ export default function LoginScreen({ navigation }) {
         // onFocus={() => console.log("works")}
         onChangeText={text => setEmail(text)}
       />
-      </View>
+      
       
       <InputField
         inputStyle={{
@@ -81,7 +92,9 @@ export default function LoginScreen({ navigation }) {
         containerStyle={{
           backgroundColor: '#fff',
           marginBottom: 20,
-          borderRadius: 100
+          borderRadius: 100,
+          width: "100%",
+          maxWidth: 600
 
         }}
         leftIcon='lock'
@@ -95,6 +108,7 @@ export default function LoginScreen({ navigation }) {
         onChangeText={text => setPassword(text)}
         handlePasswordVisibility={handlePasswordVisibility}
       />
+      </View>
       {loginError ? <ErrorMessage error={loginError} visible={true} /> : null}
 
 
@@ -115,6 +129,10 @@ export default function LoginScreen({ navigation }) {
           <TouchableOpacity
             style={[styles.signIn]}
             onPress={onLogin}
+
+            accessible={true}
+                   accessibilityLabel={"acesta este butonul de logare"} accessibilityRole={"button"}
+                   accessibilityHint={"apsand acest buton, te vei loga in contul specialistilor"}
           >
             <Text
               style={[
@@ -133,7 +151,7 @@ export default function LoginScreen({ navigation }) {
         title='Go to Signup'
         color='#fff'
       /> */}
-            </Animatable.View>
+            </Animatable.View>}
 
     </View>
   );
@@ -145,6 +163,17 @@ const styles = StyleSheet.create({
     backgroundColor: globalColors.thirdColor,
     paddingTop: 50,
     paddingHorizontal: 12
+
+  },
+
+  containerB: {
+
+    marginTop: 70
+  },
+
+  containerC: {
+    alignItems:"center",
+
   },
   title: {
     fontSize: 24,
@@ -160,6 +189,7 @@ const styles = StyleSheet.create({
   },
   signIn: {
     width: "40%",
+    maxWidth: 300,
     height: 50,
     justifyContent: "center",
     alignItems: "center",
